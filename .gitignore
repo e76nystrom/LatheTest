@@ -1,0 +1,17 @@
+#*
+*.atsln
+*.cxx
+*.lst
+*.pyc
+*.xlsx
+*.xml
+*~
+*save*
+.pioenvs
+.pioenvs/*
+.vs/*
+__vm/*
+cscope*
+Debug/*
+lib/*
+src/*
