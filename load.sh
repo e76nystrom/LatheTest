@@ -8,7 +8,7 @@
 -C "C:\Users\Eric\.platformio\packages\tool-avrdude\avrdude.conf" \
 -c wiring \
 -b 115200 \
--P COM4 \
--U flash:w:.pioenvs/megaatmega2560/firmware.hex:i
+-P COM9 \
+-U flash:w:.pio/build/megaatmega2560/firmware.hex:i
 
-/cygdrive/c/DevSoftware/Putty/putty.exe -load COM4-19200
+/cygdrive/c/DevSoftware/Putty/putty.exe -load COM9-19200

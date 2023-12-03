@@ -1,5 +1,5 @@
-#!/cygdrive/c/Python27/Python.exe
-
+#!/cygdrive/c/Python37/Python.exe
+################################################################################
 from sys import stdout
 
 debug = False
@@ -14,7 +14,7 @@ class Config():
                 (pin, port) = data
                 pins[pin] = port
                 ports[port] = pin
-                # print "pin %2d port %s" % (pin, port)
+                # print("pin %2d port %s" % (pin, port))
 
         def readAlt(self, altList):
             global pins, ports, functions
@@ -27,7 +27,7 @@ class Config():
                 except KeyError:
                     pin = -1
                 functions[function] = port
-                # print "function %6s port %s pin %d" % (function, port, pin)
+                # print("function %6s port %s pin %d" % (function, port, pin))
                 if function.startswith("OC"):
                     p = port[1:2]
                     portName = "PIN" + p
@@ -74,7 +74,8 @@ class Config():
             configMask = name + "_Mask"
             mask = "_BV(" + configBit + ")"
             if debug:
-                f1.write(" puts(F(\"%-10s %2d %s out\\n\"));\n" % (name, pin, port));
+                f1.write(" puts(F(\"%-10s %2d %s out\\n\"));\n" % \
+                         (name, pin, port));
             f1.write(" pinMode(%s, OUTPUT);\n" % (configPin))
             f.write("#define %s %s\n" % (configPin, pin))
             f.write("#define %s %s\n" % (configPort, portName))
@@ -114,7 +115,8 @@ class Config():
             if 'low' in options:
                 high = False
             if debug:
-                f1.write(" puts(F(\"%-10s %2d %s in\\n\"));\n" % (name, pin, port));
+                f1.write(" puts(F(\"%-10s %2d %s in\\n\"));\n" % \
+                         (name, pin, port));
             f1.write(" pinMode(%s, %s);\n" % (configPin, mode))
             f.write("#define %s %s\n" % (configPin, pin))
             f.write("#define %s %s\n" % (configIn, portIn))
@@ -138,7 +140,7 @@ class Config():
                 if val == port and key.startswith("INT"):
                     intNum = int(key[3])
                     reg = "EICR" + ("A", "B")[intNum >= 4]
-                    # print "'%s'" % option
+                    # print("'%s'" % option)
                     try:
                         mask = {'low' : '0',
                                 'change' : '_BV(ISC00)',
@@ -166,12 +168,13 @@ class Config():
                     dir = str(tmp[0])
                     option = tmp[1:]
                     dir = dir.strip()
-                # print "%10s pin %2d dir %s" % (name, pin, dir)
+                # print("%10s pin %2d dir %s" % (name, pin, dir))
                 if pin in pins:
                     if pin in used:
                         (first, firstDir) = used[pin]
                         if firstDir != dir:
-                            print "%s pin %d already used for %s" % (name, pin, first)
+                            print("%s pin %d already used for %s" % \
+                                    (name, pin, first))
                     else:
                         used[pin] = (name, dir)
                 if dir == "out":
